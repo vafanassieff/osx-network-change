@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TARGET_NETWORK="Super Network SSID"
+TARGET_WIFI_NETWORK="Super Network SSID"
 USER="user"
 GROUP"group"
 VOLUME_MOUNT_POINT="TimeMachine"
@@ -12,11 +12,11 @@ NETWORK_DRIVE_USER="timemachime"
 NETWORK_DRIVE_PWD="timemachime"
 NETWORK_DRIVE_SHARE="TimeMachine"
 
-CURRENT_NETWORK=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}')
+CURRENT_WIFI_NETWORK=$(/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | awk '/ SSID/ {print substr($0, index($0, $2))}')
 VOLUME_PATH="/Volumes/$VOLUME_MOUNT_POINT"
 
 
-if [[ "$NETWORK" == $TARGET_NETWORK ]]; then
+if [[ "$CURRENT_WIFI_NETWORK" == $TARGET_WIFI_NETWORK ]]; then
 	if mount | grep -q //$NETWORK_DRIVE_USER@$NETWORK_DRIVE_ADDRESS; then
 		return
 	else
